@@ -1,0 +1,27 @@
+:root {
+  /* Color */
+  --bg: #11151a;
+  --surface: #1a2028;
+  --surface-raised: #1f2630;
+  --border: #2a323d;
+  --border-strong: #3a4552;
+  --text: #dfe4ea;
+  --text-secondary: #8a94a3;
+  --text-faint: #5c6675;
+
+  --accent-amber: #c99a3f;
+  --accent-amber-dim: #8a6b2c;
+  --accent-red: #b3554d;
+  --accent-red-dim: #7a3c37;
+  --accent-green: #4f9d6e;
+  --accent-green-dim: #386e4e;
+  --accent-blue: #5a8fc9;
+
+  /* Type */
+  --font-ui: "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* Layout */
+  --sidebar-width: 300px;
+  --radius: 3px;
+}

@@ -1,0 +1,57 @@
+# Memory Forensics Platform -- Docker Compose orchestration.
+#
+# NOTE: not build-tested in an actual Docker environment (none was available
+# while authoring this) -- please verify with `docker compose up --build`
+# and report any issues before relying on it for deployment.
+#
+# Usage:
+#   docker compose up --build
+#   -> Backend API:  http://localhost:8000/api  (docs at /docs)
+#   -> Frontend:     http://localhost:5173
+#
+# Persistent data (the SQLite DB, uploaded images, generated reports) lives
+# in named volumes so it survives container restarts/rebuilds. yara_rules/
+# is bind-mounted from the host so rules can be added or edited live without
+# rebuilding the backend image (FR-14).
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/data/memforensics.db
+      - UPLOAD_DIR=/app/uploads
+      - REPORTS_DIR=/app/reports
+      - YARA_RULES_DIR=/app/yara_rules
+    volumes:
+      - backend_data:/app/data
+      - backend_uploads:/app/uploads
+      - backend_reports:/app/reports
+      - ./yara_rules:/app/yara_rules
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:8000/api
+    ports:
+      - "5173:8080"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_data:
+  backend_uploads:
+  backend_reports:
