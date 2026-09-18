@@ -35,30 +35,19 @@ FastAPI Backend (backend/)
 
 ### Frontend
 
-- React.js
-- Vite
-- Tailwind CSS
-- Axios
+- React.js, Vite, Tailwind CSS, Axios
 
 ### Backend
 
-- FastAPI
-- Python
-- Volatility 3
-- YARA-Python
-- SQLAlchemy
-- ReportLab
+- FastAPI, Python, Volatility 3, YARA-Python, SQLAlchemy, ReportLab
 
 ### Database
 
-- SQLite
-- PostgreSQL (supported)
+- SQLite, PostgreSQL (supported)
 
 ## Prerequisites
 
-- Python 3.10 or later
-- Node.js 18 or later
-- npm
+-Python 3.10 or later, Node.js 18 or later, npm
 
 ## Backend Setup
 
