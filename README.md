@@ -62,19 +62,14 @@ FastAPI Backend (backend/)
 
 ## Backend Setup
 
-```bash
-python -m venv venv
-
 # Windows
-venv\Scripts\activate
 
-# Linux/macOS
-source venv/bin/activate
-
+```bash
+python -3.12 -m venv venv
+.\venv\Scripts\Activate.ps1
 cd backend
 pip install -r requirements.txt
-
-uvicorn main:app --reload --port 8000
+uvicorn main:app --port 8000
 ```
 
 The backend runs at:
